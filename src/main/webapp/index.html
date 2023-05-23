@@ -1,0 +1,125 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <title>Список аниме</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta charset="utf-8">
+</head>
+<body>
+<h1>Список аниме</h1>
+<div id="animeTable">
+    <table>
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Тип</th>
+            <th>Дата выхода</th>
+            <th>Жанр</th>
+            <th>Статус</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Table rows will be dynamically generated -->
+        </tbody>
+    </table>
+</div>
+
+<div id="addForm">
+    <h2>Добавить аниме</h2>
+    <form id="addAnimeForm">
+        <label for="title">Название:</label>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="format">Тип:</label>
+        <input type="text" id="format" name="format" required><br>
+
+        <label for="releaseDate">Дата выхода:</label>
+        <input type="text" id="releaseDate" name="releaseDate" required><br>
+
+        <label for="genre">Жанр:</label>
+        <input type="text" id="genre" name="genre" required><br>
+
+        <label for="status">Статус:</label>
+        <input type="text" id="status" name="status" required><br>
+
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+<script>
+    $(document).ready(function() {
+        loadAnime(); // Load anime objects on page load
+        $.ajax({
+            url: 'anime',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Clear the table body
+                $('#animeTable tbody').empty();
+
+                // Iterate through the data and append rows to the table
+                for (var i = 0; i < data.length; i++) {
+                    var anime = data[i];
+                    var row = '<tr>' +
+                        '<td>' + anime.title + '</td>' +
+                        '<td>' + anime.format + '</td>' +
+                        '<td>' + anime.releaseDate + '</td>' +
+                        '<td>' + anime.genre + '</td>' +
+                        '<td>' + anime.status + '</td>' +
+                        '</tr>';
+                    $('#animeTable tbody').append(row);
+                }
+            }
+        });
+
+        // Handle form submission
+        $('#addAnimeForm').submit(function(event) {
+            event.preventDefault();
+            addAnime();
+        });
+    });
+
+    function loadAnime() {
+        $.ajax({
+            url: 'anime',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                // Clear the table body
+                $('#animeTable tbody').empty();
+
+                // Iterate through the data and append rows to the table
+                for (var i = 0; i < data.length; i++) {
+                    var anime = data[i];
+                    var row = '<tr>' +
+                        '<td>' + anime.title + '</td>' +
+                        '<td>' + anime.format + '</td>' +
+                        '<td>' + anime.releaseDate + '</td>' +
+                        '<td>' + anime.genre + '</td>' +
+                        '<td>' + anime.status + '</td>' +
+                        '</tr>';
+                    $('#animeTable tbody').append(row);
+                }
+            }
+        });
+    }
+
+    function addAnime() {
+        var form = $('#addAnimeForm');
+        var data = form.serialize();
+
+        $.ajax({
+            url: 'anime',
+            type: 'POST',
+            data: data,
+            success: function() {
+                // Clear the form fields
+                form.trigger('reset');
+
+                // Reload anime data
+                loadAnime();
+            }
+        });
+    }
+</script>
+</body>
+</html>
