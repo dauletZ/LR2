@@ -9,4 +9,6 @@
 
 Содержание текстового файла :
 ![image](https://github.com/dauletZ/LR2/assets/110877286/c9bc7299-2155-4baa-848d-86eb84a4b733)
+![image](https://github.com/dauletZ/LR2/assets/110877286/fd4bd1b4-726d-4b90-9132-316f343bb749)
+
 
