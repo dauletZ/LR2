@@ -7,6 +7,6 @@
 ![Screenshot_6](https://github.com/dauletZ/LR2/assets/110877286/fb01fa1c-bb07-4680-8b9d-41f7670eb988)
 ![Screenshot_7](https://github.com/dauletZ/LR2/assets/110877286/3533f458-c47f-4b3f-9bfb-e0d00f7b4e4a)
 
-Содержание текстового файла:
+Содержание текстового файла :
 ![image](https://github.com/dauletZ/LR2/assets/110877286/c9bc7299-2155-4baa-848d-86eb84a4b733)
 
